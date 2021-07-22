@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function HomePage() {
+export default function HomePage({ navigation }) {
   const sessionUser = {
     name: 'Pauline',
     id: 1,
@@ -133,6 +133,7 @@ export default function HomePage() {
         <View style={styles.titleBox}>
           <Text style={styles.title}>
             Bienvenue
+            {' '}
             {sessionUser.name}
           </Text>
         </View>
@@ -146,7 +147,10 @@ export default function HomePage() {
             <Text>concernant votre Bébé comme son lieu</Text>
             <Text>et sa date de naissance ainsi que son</Text>
             <Text>médecin traitant.</Text>
-            <TouchableOpacity style={styles.miniButton}>
+            <TouchableOpacity
+              style={styles.miniButton}
+              onPress={() => navigation.navigate('BabyProfilePage')}
+            >
               <Text style={styles.miniButtonText}>Ajouter</Text>
             </TouchableOpacity>
           </View>
@@ -159,7 +163,10 @@ export default function HomePage() {
               {' '}
               cm
             </Text>
-            <TouchableOpacity style={styles.miniButton}>
+            <TouchableOpacity
+              style={styles.miniButton}
+              onPress={() => navigation.navigate('BabyRecordsPage')}
+            >
               <Text style={styles.miniButtonText}>Ajouter</Text>
             </TouchableOpacity>
           </View>
@@ -170,23 +177,24 @@ export default function HomePage() {
               {' '}
               kg
             </Text>
-            <TouchableOpacity style={styles.miniButton}>
+            <TouchableOpacity
+              style={styles.miniButton}
+              onPress={() => navigation.navigate('BabyRecordsPage')}
+            >
               <Text style={styles.miniButtonText}>Ajouter</Text>
             </TouchableOpacity>
           </View>
         </View>
-        <LinearGradient
-          colors={['#F178B6', '#EF5DA8']}
-          style={styles.button}
+        <TouchableOpacity
+          onPress={() => navigation.navigate('MyProfilePage')}
         >
-          <Text style={styles.buttonText}>modifier</Text>
-        </LinearGradient>
-        <LinearGradient
-          colors={['#F178B6', '#EF5DA8']}
-          style={styles.button}
-        >
-          <Text style={styles.buttonText}>supprimer mon compte</Text>
-        </LinearGradient>
+          <LinearGradient
+            colors={['#F178B6', '#EF5DA8']}
+            style={styles.button}
+          >
+            <Text style={styles.buttonText}>modifier mes données</Text>
+          </LinearGradient>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );

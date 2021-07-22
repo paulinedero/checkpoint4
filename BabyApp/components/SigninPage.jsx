@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function SigninPage() {
+export default function SigninPage({ navigation }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [seePassword, setSeePassword] = useState(true);
@@ -104,13 +104,20 @@ export default function SigninPage() {
           right={<TextInput.Icon name="eye" onPress={() => setSeePassword(!seePassword)} />}
         />
       </View>
-      <LinearGradient
-        colors={['#F178B6', '#EF5DA8']}
-        style={styles.button}
+      <TouchableOpacity
+        onPress={() => navigation.navigate('HomePage')}
       >
-        <Text style={styles.buttonText}>se connecter</Text>
-      </LinearGradient>
-      <TouchableOpacity style={styles.moreOptionButton}>
+        <LinearGradient
+          colors={['#F178B6', '#EF5DA8']}
+          style={styles.button}
+        >
+          <Text style={styles.buttonText}>se connecter</Text>
+        </LinearGradient>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.moreOptionButton}
+        onPress={() => navigation.navigate('SignupPage')}
+      >
         <Text style={styles.moreOptionText}> Pas encore de compte ? Créez-en un</Text>
       </TouchableOpacity>
 

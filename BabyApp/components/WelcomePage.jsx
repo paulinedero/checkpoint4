@@ -5,6 +5,7 @@ import {
   Text,
   View,
   Image,
+  TouchableOpacity,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function WelcomePage() {
+export default function WelcomePage({ navigation }) {
   return (
     <View style={styles.body}>
       <Image
@@ -72,12 +73,16 @@ export default function WelcomePage() {
         <Text style={styles.introText}>Suivez l&apos;évolution de votre bébé</Text>
         <Text style={styles.introText}>depuis son premier jour</Text>
       </View>
-      <LinearGradient
-        colors={['#F178B6', '#EF5DA8']}
-        style={styles.button}
+      <TouchableOpacity
+        onPress={() => navigation.navigate('SigninPage')}
       >
-        <Text style={styles.buttonText}>se connecter</Text>
-      </LinearGradient>
+        <LinearGradient
+          colors={['#F178B6', '#EF5DA8']}
+          style={styles.button}
+        >
+          <Text style={styles.buttonText}>se connecter</Text>
+        </LinearGradient>
+      </TouchableOpacity>
     </View>
   );
 }

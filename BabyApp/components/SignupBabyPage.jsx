@@ -4,6 +4,7 @@ import {
   Text,
   View,
   ScrollView,
+  TouchableOpacity,
 } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -65,7 +66,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function SignupBabyPage() {
+export default function SignupBabyPage({ navigation }) {
   const [fullname, setFullname] = useState('');
   const [birthday, setBirthday] = useState('');
   const [birthtime, setBirthtime] = useState('');
@@ -153,12 +154,16 @@ export default function SignupBabyPage() {
             left={<TextInput.Icon icon={userIcon} />}
           />
         </View>
-        <LinearGradient
-          colors={['#F178B6', '#EF5DA8']}
-          style={styles.button}
+        <TouchableOpacity
+          onPress={() => navigation.navigate('HomePage')}
         >
-          <Text style={styles.buttonText}>enregistrer</Text>
-        </LinearGradient>
+          <LinearGradient
+            colors={['#F178B6', '#EF5DA8']}
+            style={styles.button}
+          >
+            <Text style={styles.buttonText}>enregistrer</Text>
+          </LinearGradient>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );

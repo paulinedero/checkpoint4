@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function SignupPage() {
+export default function SignupPage({ navigation }) {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -206,13 +206,20 @@ export default function SignupPage() {
             </Text>
           </View>
         </View>
-        <LinearGradient
-          colors={['#F178B6', '#EF5DA8']}
-          style={styles.button}
+        <TouchableOpacity
+          onPress={() => navigation.navigate('SignupBabyPage')}
         >
-          <Text style={styles.buttonText}>s&apos;enregistrer</Text>
-        </LinearGradient>
-        <TouchableOpacity style={styles.moreOptionButton}>
+          <LinearGradient
+            colors={['#F178B6', '#EF5DA8']}
+            style={styles.button}
+          >
+            <Text style={styles.buttonText}>s&apos;enregistrer</Text>
+          </LinearGradient>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.moreOptionButton}
+          onPress={() => navigation.navigate('SigninPage')}
+        >
           <Text style={styles.moreOptionText}> Déjà un compte ? Connectez-vous</Text>
         </TouchableOpacity>
       </View>

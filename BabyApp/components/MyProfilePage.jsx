@@ -222,18 +222,14 @@ export default function MyProfilePage() {
         <View>
           <Text>Mes enfants</Text>
         </View>
-        <LinearGradient
-          colors={['#F178B6', '#EF5DA8']}
-          style={styles.button}
-        >
-          <Text style={styles.buttonText}>modifier</Text>
-        </LinearGradient>
-        <LinearGradient
-          colors={['#F178B6', '#EF5DA8']}
-          style={styles.button}
-        >
-          <Text style={styles.buttonText}>supprimer mon compte</Text>
-        </LinearGradient>
+        <TouchableOpacity>
+          <LinearGradient
+            colors={['#F178B6', '#EF5DA8']}
+            style={styles.button}
+          >
+            <Text style={styles.buttonText}>supprimer mon compte</Text>
+          </LinearGradient>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
