@@ -13,6 +13,7 @@ import SignupPage from './components/SignupPage';
 import SignupBabyPage from './components/SignupBabyPage';
 import MyProfilePage from './components/MyProfilePage';
 import BabyProfilePage from './components/BabyProfilePage';
+import HomePage from './components/HomePage';
 
 const styles = StyleSheet.create({
   container: {
@@ -34,7 +35,8 @@ export default function App() {
         {/*<SignupPage />*/}
         {/*<SignupBabyPage />*/}
         {/*<MyProfilePage />*/}
-        <BabyProfilePage />
+        {/*<BabyProfilePage />*/}
+        <HomePage />
       </View>
     </SafeAreaView>
   );
