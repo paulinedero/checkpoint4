@@ -8,6 +8,11 @@ import {
 // import axios from 'axios';
 // import Env from './constants/Env';
 import WelcomePage from './components/WelcomePage';
+import SigninPage from './components/SigninPage';
+import SignupPage from './components/SignupPage';
+import SignupBabyPage from './components/SignupBabyPage';
+import MyProfilePage from './components/MyProfilePage';
+import BabyProfilePage from './components/BabyProfilePage';
 
 const styles = StyleSheet.create({
   container: {
@@ -24,7 +29,12 @@ export default function App() {
     <SafeAreaView style={{ flex: 1 }}>
       <StatusBar />
       <View style={styles.container}>
-        <WelcomePage />
+        {/*<WelcomePage />*/}
+        {/*<SigninPage />*/}
+        {/*<SignupPage />*/}
+        {/*<SignupBabyPage />*/}
+        {/*<MyProfilePage />*/}
+        <BabyProfilePage />
       </View>
     </SafeAreaView>
   );
