@@ -116,6 +116,31 @@ export default function BabyProfilePage() {
       });
   }, []);
 
+  const modifyData = async () => {
+    try {
+      axios
+        .put(`http://192.168.1.63:3000/api/users/${sessionUser.id}/babies/${sessionUser.baby}`, {
+          full_name: fullname,
+          birthday,
+          time_of_birth: birthtime,
+          place_of_birth: birthplace,
+          gender,
+          locality,
+          doctor,
+        });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  const deleteBabyProfile = async () => {
+    try {
+      axios
+        .delete(`http://192.168.1.63:3000/api/users/${sessionUser.id}/babies/${sessionUser.baby}`);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <ScrollView>
       <View style={styles.body}>
@@ -239,18 +264,26 @@ export default function BabyProfilePage() {
             </TouchableOpacity>
           </View>
         </View>
-        <LinearGradient
-          colors={['#F178B6', '#EF5DA8']}
-          style={styles.button}
+        <TouchableOpacity
+          onPress={() => modifyData()}
         >
-          <Text style={styles.buttonText}>modifier</Text>
-        </LinearGradient>
-        <LinearGradient
-          colors={['#F178B6', '#EF5DA8']}
-          style={styles.button}
+          <LinearGradient
+            colors={['#F178B6', '#EF5DA8']}
+            style={styles.button}
+          >
+            <Text style={styles.buttonText}>confirmer les modifications</Text>
+          </LinearGradient>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => deleteBabyProfile()}
         >
-          <Text style={styles.buttonText}>supprimer ce profil</Text>
-        </LinearGradient>
+          <LinearGradient
+            colors={['#F178B6', '#EF5DA8']}
+            style={styles.button}
+          >
+            <Text style={styles.buttonText}>supprimer ce profil</Text>
+          </LinearGradient>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );

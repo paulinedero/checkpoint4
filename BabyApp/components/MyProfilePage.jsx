@@ -118,6 +118,32 @@ export default function MyProfilePage() {
       });
   }, []);
 
+  const modifyData = async () => {
+    try {
+      axios
+        .put(`http://192.168.1.63:3000/api/users/${sessionUser.id}`, {
+          email,
+          username,
+          password,
+          full_name: fullname,
+          birthday,
+          gender,
+          locality,
+        });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const deleteProfile = async () => {
+    try {
+      axios
+        .delete(`http://192.168.1.63:3000/api/users/${sessionUser.id}`);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <ScrollView>
       <View style={styles.body}>
@@ -241,10 +267,19 @@ export default function MyProfilePage() {
             </TouchableOpacity>
           </View>
         </View>
-        <View>
-          <Text>Mes enfants</Text>
-        </View>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => modifyData()}
+        >
+          <LinearGradient
+            colors={['#F178B6', '#EF5DA8']}
+            style={styles.button}
+          >
+            <Text style={styles.buttonText}>confirmer les modifications</Text>
+          </LinearGradient>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => deleteProfile()}
+        >
           <LinearGradient
             colors={['#F178B6', '#EF5DA8']}
             style={styles.button}

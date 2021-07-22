@@ -119,7 +119,10 @@ export default function SigninPage({ navigation }) {
         />
       </View>
       <TouchableOpacity
-        onPress={() => navigation.navigate('HomePage')}
+        onPress={() => {
+          inscription();
+          navigation.navigate('HomePage');
+        }}
       >
         <LinearGradient
           colors={['#F178B6', '#EF5DA8']}
@@ -131,7 +134,6 @@ export default function SigninPage({ navigation }) {
       <TouchableOpacity
         style={styles.moreOptionButton}
         onPress={() => {
-          inscription();
           navigation.navigate('SignupPage');
         }}
       >
