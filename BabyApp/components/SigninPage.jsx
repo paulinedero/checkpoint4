@@ -5,7 +5,7 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
-import axios from 'axios';
+// import axios from 'axios';
 import { TextInput } from 'react-native-paper';
 import { LinearGradient } from 'expo-linear-gradient';
 import userIcon from '../assets/user_icon.png';
@@ -76,7 +76,8 @@ export default function SigninPage({ navigation }) {
   const [password, setPassword] = useState('');
   const [seePassword, setSeePassword] = useState(true);
 
-  const inscription = async () => {
+{/* Wait for user authnetication
+    const inscription = async () => {
     try {
       axios
         .post('http://192.168.1.63:3000/api/users/', {
@@ -87,6 +88,7 @@ export default function SigninPage({ navigation }) {
       console.error(err);
     }
   };
+*/}
 
   return (
     <View style={styles.body}>
@@ -120,7 +122,7 @@ export default function SigninPage({ navigation }) {
       </View>
       <TouchableOpacity
         onPress={() => {
-          inscription();
+          // inscription();
           navigation.navigate('HomePage');
         }}
       >

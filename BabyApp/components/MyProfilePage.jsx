@@ -112,7 +112,7 @@ export default function MyProfilePage() {
         setUsername(data[0].username);
         setPassword(data[0].password);
         setFullname(data[0].full_name);
-        setBirthday(moment(data[0].birthday).format('DD/MM/YYYY'));
+        setBirthday(moment(data[0].birthday).format('YYYY-MM-DD'));
         setGender(data[0].gender);
         setLocality(data[0].locality);
       });

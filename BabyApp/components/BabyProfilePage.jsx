@@ -107,7 +107,7 @@ export default function BabyProfilePage() {
       .then((res) => res.data)
       .then((data) => {
         setFullname(data[0].full_name);
-        setBirthday(moment(data[0].birthday).format('DD/MM/YYYY'));
+        setBirthday(moment(data[0].birthday).format('YYYY/MM/DD'));
         setBirthtime(data[0].time_of_birth);
         setBirthplace(data[0].place_of_birth);
         setGender(data[0].gender);
