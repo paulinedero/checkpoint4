@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { TextInput, RadioButton } from 'react-native-paper';
 import { LinearGradient } from 'expo-linear-gradient';
+import axios from 'axios';
 import emailIcon from '../assets/email_icon.png';
 import userIcon from '../assets/user_icon.png';
 import lockIcon from '../assets/lock_icon.png';
@@ -110,6 +111,22 @@ export default function SignupPage({ navigation }) {
   const [locality, setLocality] = useState('');
   const [checked, setChecked] = useState('unchecked');
 
+  const inscription = async () => {
+    try {
+      axios
+        .post('http://192.168.1.63:3000/api/users', {
+          email,
+          username,
+          password,
+          full_name: fullname,
+          birthday,
+          gender,
+          locality,
+        });
+    } catch (err) {
+      console.error(err);
+    }
+  };
   return (
     <ScrollView>
       <View style={styles.body}>
@@ -207,7 +224,10 @@ export default function SignupPage({ navigation }) {
           </View>
         </View>
         <TouchableOpacity
-          onPress={() => navigation.navigate('SignupBabyPage')}
+          onPress={() => {
+            inscription();
+            navigation.navigate('SignupBabyPage');
+          }}
         >
           <LinearGradient
             colors={['#F178B6', '#EF5DA8']}

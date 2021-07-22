@@ -6,6 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
+import axios from 'axios';
 import { TextInput } from 'react-native-paper';
 import { LinearGradient } from 'expo-linear-gradient';
 import userIcon from '../assets/user_icon.png';
@@ -67,6 +68,11 @@ const styles = StyleSheet.create({
 });
 
 export default function SignupBabyPage({ navigation }) {
+  const sessionUser = {
+    name: 'Pauline',
+    id: 22,
+  };
+
   const [fullname, setFullname] = useState('');
   const [birthday, setBirthday] = useState('');
   const [birthtime, setBirthtime] = useState('');
@@ -74,6 +80,23 @@ export default function SignupBabyPage({ navigation }) {
   const [gender, setGender] = useState('');
   const [locality, setLocality] = useState('');
   const [doctor, setDoctor] = useState('');
+
+  const inscription = async () => {
+    try {
+      axios
+        .post(`http://192.168.1.63:3000/api/users/${sessionUser.id}/babies`, {
+          full_name: fullname,
+          birthday,
+          time_of_birth: birthtime,
+          place_of_birth: birthplace,
+          gender,
+          locality,
+          doctor,
+        });
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <ScrollView>
@@ -155,7 +178,10 @@ export default function SignupBabyPage({ navigation }) {
           />
         </View>
         <TouchableOpacity
-          onPress={() => navigation.navigate('HomePage')}
+          onPress={() => {
+            inscription();
+            navigation.navigate('HomePage');
+          }}
         >
           <LinearGradient
             colors={['#F178B6', '#EF5DA8']}

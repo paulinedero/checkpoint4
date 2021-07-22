@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
 export default function HomePage({ navigation }) {
   const sessionUser = {
     name: 'Pauline',
-    id: 1,
+    id: 22,
   };
 
   const baby = {

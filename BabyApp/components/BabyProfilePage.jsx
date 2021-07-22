@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,6 +7,8 @@ import {
   ScrollView,
   Image,
 } from 'react-native';
+import axios from 'axios';
+import moment from 'moment';
 import { TextInput } from 'react-native-paper';
 import { LinearGradient } from 'expo-linear-gradient';
 import userIcon from '../assets/user_icon.png';
@@ -78,6 +80,12 @@ const styles = StyleSheet.create({
 });
 
 export default function BabyProfilePage() {
+  const sessionUser = {
+    name: 'Pauline',
+    id: 22,
+    baby: 22,
+  };
+
   const [fullname, setFullname] = useState('');
   const [birthday, setBirthday] = useState('');
   const [birthtime, setBirthtime] = useState('');
@@ -92,6 +100,21 @@ export default function BabyProfilePage() {
   const [enableGenderInput, setEnableGenderInput] = useState(true);
   const [enableLocalityInput, setEnableLocalityInput] = useState(true);
   const [enableDoctorInput, setEnableDoctorInput] = useState(true);
+
+  useEffect(() => {
+    axios
+      .get(`http://192.168.1.63:3000/api/users/${sessionUser.id}/babies/${sessionUser.baby}`)
+      .then((res) => res.data)
+      .then((data) => {
+        setFullname(data[0].full_name);
+        setBirthday(moment(data[0].birthday).format('DD/MM/YYYY'));
+        setBirthtime(data[0].time_of_birth);
+        setBirthplace(data[0].place_of_birth);
+        setGender(data[0].gender);
+        setLocality(data[0].locality);
+        setDoctor(data[0].doctor);
+      });
+  }, []);
 
   return (
     <ScrollView>

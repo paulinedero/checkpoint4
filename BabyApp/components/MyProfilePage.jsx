@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,6 +7,8 @@ import {
   ScrollView,
   Image,
 } from 'react-native';
+import axios from 'axios';
+import moment from 'moment';
 import { TextInput } from 'react-native-paper';
 import { LinearGradient } from 'expo-linear-gradient';
 import emailIcon from '../assets/email_icon.png';
@@ -80,6 +82,11 @@ const styles = StyleSheet.create({
 });
 
 export default function MyProfilePage() {
+  const sessionUser = {
+    name: 'Pauline',
+    id: 22,
+  };
+
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -95,6 +102,21 @@ export default function MyProfilePage() {
   const [enableBirthdayInput, setEnableBirthdayInput] = useState(true);
   const [enableGenderInput, setEnableGenderInput] = useState(true);
   const [enableLocalityInput, setEnableLocalityInput] = useState(true);
+
+  useEffect(() => {
+    axios
+      .get(`http://192.168.1.63:3000/api/users/${sessionUser.id}`)
+      .then((res) => res.data)
+      .then((data) => {
+        setEmail(data[0].email);
+        setUsername(data[0].username);
+        setPassword(data[0].password);
+        setFullname(data[0].full_name);
+        setBirthday(moment(data[0].birthday).format('DD/MM/YYYY'));
+        setGender(data[0].gender);
+        setLocality(data[0].locality);
+      });
+  }, []);
 
   return (
     <ScrollView>
